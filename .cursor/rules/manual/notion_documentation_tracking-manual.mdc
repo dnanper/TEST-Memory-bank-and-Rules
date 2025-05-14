@@ -1,0 +1,53 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Notion Documentation Tracking
+
+## Context
+
+- Used when explicitly requested to track documentation in Notion
+- Applies after PLAN mode execution to maintain documentation
+- Helps maintain a centralized record of project planning and documentation in Notion
+
+## Critical Rules
+
+- When user requests Notion documentation tracking, use MCP Notion Tool to retrieve the page ID of "0. Inbox" page
+- After executing PLAN mode, create a new page under "0. Inbox" with appropriate title
+- Update the new page content with comprehensive documentation generated during planning
+- Include project context, strategies, and next steps in the documentation
+- Maintain consistent formatting for all Notion documentation entries
+- Notify user when documentation has been successfully saved to Notion
+
+## Examples
+
+<example>
+User: Let's plan the authentication system implementation.
+Assistant: I'll help you plan the authentication system implementation. First, let me review the Memory Bank to understand the current state of the project.
+
+[Agent reads Memory Bank files]
+
+Based on the project requirements, here's my proposed authentication system implementation plan:
+[Detailed plan follows...]
+
+Now I'll document this plan in Notion:
+1. Retrieved page ID for "0. Inbox"
+2. Created new page titled "Authentication System Implementation Plan"
+3. Updated page with complete documentation including context, strategy, and next steps
+4. Notion documentation successfully saved
+
+User: Great, let's implement this plan.
+</example>
+
+<example type="invalid">
+User: Let's plan the authentication system implementation.
+Assistant: I'll help you plan the authentication system implementation. First, let me review the Memory Bank to understand the current state of the project.
+
+[Agent reads Memory Bank files]
+
+Based on the project requirements, here's my proposed authentication system implementation plan:
+[Detailed plan follows...]
+
+User: Great, let's implement this plan.
+</example>
