@@ -18,7 +18,7 @@ An object-oriented C++ application that simulates a marketplace for vehicles, de
 ## System Requirements
 
 - C++11 compatible compiler (g++, MSVC, etc.)
-- Make (for building with the provided Makefile)
+- Make (optional - for building with the provided Makefile)
 
 ## Project Structure
 
@@ -40,13 +40,15 @@ vehicle-market/
 
 ## Building the Project
 
-To build the project, run:
+### Using Make (Linux/macOS/MinGW on Windows)
+
+To build the project with Make, run:
 
 ```bash
 make
 ```
 
-This will compile all source files and create the executable `vehicle_market`.
+This will compile all source files and create the executable `vehicle_market` (or `vehicle_market.exe` on Windows).
 
 To clean the build files:
 
@@ -60,12 +62,49 @@ To rebuild from scratch:
 make rebuild
 ```
 
+### Manual Build (Windows without Make)
+
+If you don't have Make installed, you can build the project manually using g++:
+
+1. Create the obj directories:
+
+```powershell
+mkdir obj\models obj\utils
+```
+
+2. Compile the source files:
+
+```powershell
+cd src
+g++ -std=c++11 -c models/Vehicle.cpp models/Car.cpp models/Motorbike.cpp models/Customer.cpp models/GarageOwner.cpp utils/Utils.cpp main.cpp
+```
+
+3. Link the object files:
+
+```powershell
+g++ -o ../vehicle_market.exe Vehicle.o Car.o Motorbike.o Customer.o GarageOwner.o Utils.o main.o
+```
+
+4. Clean up object files (optional):
+
+```powershell
+del *.o
+```
+
 ## Running the Application
 
 After building, run the application:
 
+**Linux/macOS:**
+
 ```bash
 ./vehicle_market
+```
+
+**Windows:**
+
+```powershell
+.\vehicle_market.exe
 ```
 
 Follow the on-screen prompts to interact with the system.
