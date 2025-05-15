@@ -1,9 +1,14 @@
 #include "GarageOwner.h"
+#include "Car.h"
+#include "Motorbike.h"
 #include <iostream>
 #include <algorithm>
+#include <typeinfo>
+
+using namespace std;
 
 // Constructor & Destructor
-GarageOwner::GarageOwner(std::string name)
+GarageOwner::GarageOwner(string name)
     : name(name), vehicleCount(0), capacity(20) {
     inventory = new Vehicle*[capacity];
     for (int i = 0; i < capacity; i++) {
@@ -21,11 +26,11 @@ GarageOwner::~GarageOwner() {
 }
 
 // Getters & Setters
-std::string GarageOwner::getName() const {
+string GarageOwner::getName() const {
     return name;
 }
 
-void GarageOwner::setName(const std::string& name) {
+void GarageOwner::setName(const string& name) {
     this->name = name;
 }
 
@@ -58,13 +63,13 @@ bool GarageOwner::addVehicle(Vehicle* vehicle) {
     
     inventory[vehicleCount] = vehicle;
     vehicleCount++;
-    std::cout << "Vehicle added to inventory successfully!" << std::endl;
+    cout << "Vehicle added to inventory successfully!" << endl;
     return true;
 }
 
 bool GarageOwner::removeVehicle(int index) {
     if (index < 0 || index >= vehicleCount) {
-        std::cout << "Invalid vehicle index!" << std::endl;
+        cout << "Invalid vehicle index!" << endl;
         return false;
     }
     
@@ -76,7 +81,7 @@ bool GarageOwner::removeVehicle(int index) {
     
     inventory[vehicleCount - 1] = nullptr;
     vehicleCount--;
-    std::cout << "Vehicle removed from inventory." << std::endl;
+    cout << "Vehicle removed from inventory." << endl;
     return true;
 }
 
@@ -89,16 +94,45 @@ Vehicle* GarageOwner::getVehicle(int index) const {
 
 void GarageOwner::displayInventory() const {
     if (vehicleCount == 0) {
-        std::cout << name << "'s garage has no vehicles in inventory." << std::endl;
+        cout << name << "'s garage has no vehicles in inventory." << endl;
         return;
     }
     
-    std::cout << "===== " << name << "'s Garage Inventory =====" << std::endl;
+    cout << "===== " << name << "'s Garage Inventory =====" << endl;
+    
+    // First display all cars
+    cout << "\n----- Cars -----" << endl;
+    int carCount = 0;
     for (int i = 0; i < vehicleCount; i++) {
-        std::cout << "\nVehicle " << (i + 1) << ":" << std::endl;
-        inventory[i]->displayInf();
+        Car* car = dynamic_cast<Car*>(inventory[i]);
+        if (car) {
+            cout << "\nVehicle " << (i + 1) << ":" << endl;
+            car->displayInf();
+            carCount++;
+        }
     }
-    std::cout << "=====================================" << std::endl;
+    
+    if (carCount == 0) {
+        cout << "No cars in inventory." << endl;
+    }
+    
+    // Then display all motorbikes
+    cout << "\n----- Motorbikes -----" << endl;
+    int motorbikeCount = 0;
+    for (int i = 0; i < vehicleCount; i++) {
+        Motorbike* motorbike = dynamic_cast<Motorbike*>(inventory[i]);
+        if (motorbike) {
+            cout << "\nVehicle " << (i + 1) << ":" << endl;
+            motorbike->displayInf();
+            motorbikeCount++;
+        }
+    }
+    
+    if (motorbikeCount == 0) {
+        cout << "No motorbikes in inventory." << endl;
+    }
+    
+    cout << "=====================================" << endl;
 }
 
 void GarageOwner::sortByPrice() {
@@ -118,7 +152,7 @@ void GarageOwner::sortByPrice() {
         }
     }
     
-    std::cout << "Inventory sorted by price (ascending)." << std::endl;
+    cout << "Inventory sorted by price (ascending)." << endl;
 }
 
 void GarageOwner::sortByModel() {
@@ -138,5 +172,5 @@ void GarageOwner::sortByModel() {
         }
     }
     
-    std::cout << "Inventory sorted by model (alphabetically)." << std::endl;
+    cout << "Inventory sorted by model (alphabetically)." << endl;
 } 

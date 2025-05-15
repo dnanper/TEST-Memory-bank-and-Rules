@@ -4,24 +4,26 @@
 #include <string>
 #include <iostream>
 
+using namespace std;
+
 class Vehicle {
 protected:
-    std::string brand;
+    string brand;
     double price;
-    std::string model;
+    string model;
 
 public:
     // Constructor & Destructor
-    Vehicle(std::string brand, double price, std::string model);
+    Vehicle(string brand, double price, string model);
     virtual ~Vehicle();
 
     // Getters & Setters
-    std::string getBrand() const;
+    string getBrand() const;
     double getPrice() const;
-    std::string getModel() const;
-    void setBrand(const std::string& brand);
+    string getModel() const;
+    void setBrand(const string& brand);
     void setPrice(double price);
-    void setModel(const std::string& model);
+    void setModel(const string& model);
 
     // Virtual methods
     virtual void fuelConsumption() const = 0;

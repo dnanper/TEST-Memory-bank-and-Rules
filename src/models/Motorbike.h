@@ -5,18 +5,18 @@
 
 class Motorbike : public Vehicle {
 private:
-    std::string engineType;
+    string engineType;
     double maxSpeed;
 
 public:
     // Constructor & Destructor
-    Motorbike(std::string brand, double price, std::string model, std::string engineType, double maxSpeed);
+    Motorbike(string brand, double price, string model, string engineType, double maxSpeed);
     ~Motorbike() override;
 
     // Getters & Setters
-    std::string getEnType() const;
+    string getEnType() const;
     double getSpeed() const;
-    void setEnType(const std::string& engineType);
+    void setEnType(const string& engineType);
     void setSpeed(double maxSpeed);
 
     // Overridden methods

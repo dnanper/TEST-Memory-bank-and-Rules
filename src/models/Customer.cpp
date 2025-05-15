@@ -1,8 +1,12 @@
 #include "Customer.h"
+#include "Car.h"
+#include "Motorbike.h"
 #include <iostream>
 
+using namespace std;
+
 // Constructor & Destructor
-Customer::Customer(std::string name, int contact)
+Customer::Customer(string name, int contact)
     : name(name), contact(contact), vehicleCount(0), capacity(10) {
     vehicles = new Vehicle*[capacity];
     for (int i = 0; i < capacity; i++) {
@@ -18,7 +22,7 @@ Customer::~Customer() {
 }
 
 // Getters & Setters
-std::string Customer::getName() const {
+string Customer::getName() const {
     return name;
 }
 
@@ -26,7 +30,7 @@ int Customer::getContact() const {
     return contact;
 }
 
-void Customer::setName(const std::string& name) {
+void Customer::setName(const string& name) {
     this->name = name;
 }
 
@@ -63,20 +67,49 @@ bool Customer::purchaseVehicle(Vehicle* vehicle) {
     
     vehicles[vehicleCount] = vehicle;
     vehicleCount++;
-    std::cout << "Vehicle purchased successfully!" << std::endl;
+    cout << "Vehicle purchased successfully!" << endl;
     return true;
 }
 
 void Customer::displayPurchasedVehicles() const {
     if (vehicleCount == 0) {
-        std::cout << name << " has not purchased any vehicles yet." << std::endl;
+        cout << name << " has not purchased any vehicles yet." << endl;
         return;
     }
     
-    std::cout << "===== " << name << "'s Purchased Vehicles =====" << std::endl;
+    cout << "===== " << name << "'s Purchased Vehicles =====" << endl;
+    
+    // First display all cars
+    cout << "\n----- Cars -----" << endl;
+    int carCount = 0;
     for (int i = 0; i < vehicleCount; i++) {
-        std::cout << "\nVehicle " << (i + 1) << ":" << std::endl;
-        vehicles[i]->displayInf();
+        Car* car = dynamic_cast<Car*>(vehicles[i]);
+        if (car) {
+            cout << "\nVehicle " << (i + 1) << ":" << endl;
+            car->displayInf();
+            carCount++;
+        }
     }
-    std::cout << "==========================================" << std::endl;
+    
+    if (carCount == 0) {
+        cout << "No cars purchased." << endl;
+    }
+    
+    // Then display all motorbikes
+    cout << "\n----- Motorbikes -----" << endl;
+    int motorbikeCount = 0;
+    for (int i = 0; i < vehicleCount; i++) {
+        Motorbike* motorbike = dynamic_cast<Motorbike*>(vehicles[i]);
+        if (motorbike) {
+            cout << "\nVehicle " << (i + 1) << ":" << endl;
+            motorbike->displayInf();
+            motorbikeCount++;
+        }
+    }
+    
+    if (motorbikeCount == 0) {
+        cout << "No motorbikes purchased." << endl;
+    }
+    
+    cout << "==========================================" << endl;
 } 

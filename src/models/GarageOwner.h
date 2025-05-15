@@ -6,19 +6,19 @@
 
 class GarageOwner {
 private:
-    std::string name;
+    string name;
     Vehicle** inventory;
     int vehicleCount;
     int capacity;
 
 public:
     // Constructor & Destructor
-    GarageOwner(std::string name);
+    GarageOwner(string name);
     ~GarageOwner();
 
     // Getters & Setters
-    std::string getName() const;
-    void setName(const std::string& name);
+    string getName() const;
+    void setName(const string& name);
     int getVehicleCount() const;
 
     // Inventory management

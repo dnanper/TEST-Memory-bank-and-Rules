@@ -7,11 +7,13 @@
 #include "../models/GarageOwner.h"
 #include "../models/Customer.h"
 
+using namespace std;
+
 namespace Utils {
     // Input validation functions
-    int getIntInput(const std::string& prompt, int min = INT_MIN, int max = INT_MAX);
-    double getDoubleInput(const std::string& prompt, double min = -1000000.0, double max = 1000000.0);
-    std::string getStringInput(const std::string& prompt);
+    int getIntInput(const string& prompt, int min = INT_MIN, int max = INT_MAX);
+    double getDoubleInput(const string& prompt, double min = -1000000.0, double max = 1000000.0);
+    string getStringInput(const string& prompt);
     
     // Menu functions
     void displayMainMenu();

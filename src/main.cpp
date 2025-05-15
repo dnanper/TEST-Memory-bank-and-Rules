@@ -6,29 +6,23 @@
 #include "models/GarageOwner.h"
 #include "utils/Utils.h"
 
+using namespace std;
+
 // Function prototypes
 void handleGarageOwnerMenu(GarageOwner& owner);
 void handleCustomerMenu(Customer& customer, GarageOwner& owner);
 
 int main() {
-    std::cout << "===== Welcome to Vehicle Market System =====" << std::endl;
+    cout << "===== Welcome to Vehicle Market System =====" << endl;
     
     // Initialize the garage owner
-    std::string ownerName = Utils::getStringInput("Enter garage owner name: ");
+    string ownerName = Utils::getStringInput("Enter garage owner name: ");
     GarageOwner garageOwner(ownerName);
     
     // Initialize the customer
-    std::string customerName = Utils::getStringInput("Enter customer name: ");
+    string customerName = Utils::getStringInput("Enter customer name: ");
     int customerContact = Utils::getIntInput("Enter customer contact: ", 0, 9999999);
     Customer customer(customerName, customerContact);
-    
-    // Sample data (optional)
-    Car* sampleCar1 = new Car("Toyota", 25000, "Camry", "Blue", 5);
-    Car* sampleCar2 = new Car("Honda", 28000, "Accord", "Red", 5);
-    Motorbike* sampleBike = new Motorbike("Yamaha", 12000, "YZF", "V-Twin", 280);
-    garageOwner.addVehicle(sampleCar1);
-    garageOwner.addVehicle(sampleCar2);
-    garageOwner.addVehicle(sampleBike);
     
     // Main menu loop
     bool running = true;
@@ -46,7 +40,7 @@ int main() {
                 break;
                 
             case 0:
-                std::cout << "Thank you for using Vehicle Market System. Goodbye!" << std::endl;
+                cout << "Thank you for using Vehicle Market System. Goodbye!" << endl;
                 running = false;
                 break;
         }

@@ -6,7 +6,7 @@
 
 class Customer {
 private:
-    std::string name;
+    string name;
     int contact;
     Vehicle** vehicles;
     int vehicleCount;
@@ -14,13 +14,13 @@ private:
 
 public:
     // Constructor & Destructor
-    Customer(std::string name, int contact);
+    Customer(string name, int contact);
     ~Customer();
 
     // Getters & Setters
-    std::string getName() const;
+    string getName() const;
     int getContact() const;
-    void setName(const std::string& name);
+    void setName(const string& name);
     void setContact(int contact);
 
     // Vehicle management
